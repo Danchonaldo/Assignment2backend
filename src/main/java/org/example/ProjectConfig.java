@@ -1,15 +1,33 @@
 package org.example;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 
 @Configuration
 @ComponentScan(basePackages = "org.example")
 public class ProjectConfig {
+
     @Bean
-    public TicketService ticketService(@Qualifier("vipService") TicketService ticketService) {
-        return ticketService;
+    @Primary
+    public TicketService defaultTicketService(TicketRepository repository) {
+        return new DefaultTickets(repository);
+    }
+
+    @Bean
+    @Qualifier("vipService")
+    public TicketService vipTicketService(TicketRepository repository) {
+        return new VIPTickets(repository);
+    }
+
+    @Bean
+    @Lazy
+    public LazyBean lazyBean() {
+        return new LazyBean();
+    }
+
+    @Bean
+    public EagerBean eagerBean() {
+        return new EagerBean();
     }
 }
+

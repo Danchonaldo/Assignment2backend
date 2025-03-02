@@ -14,9 +14,9 @@ public class Main {
         while (true) {
             System.out.println("Choose an action: 1 - Buy Ticket, 2 - Cancel Ticket, 3 - View All, 4 - Exit");
             int action = scanner.nextInt();
-            scanner.nextLine();  // Очистка буфера
+            scanner.nextLine();
 
-            if (action == 4) break;  // Выход
+            if (action == 4) break;
 
             System.out.println("Enter match name:");
             String match = scanner.nextLine();
@@ -47,6 +47,7 @@ public class Main {
                 defaultTicketService.listAllTickets();
                 vipTicketService.listAllTickets();
                 context.getBean(LazyBean.class);
+                context.getBean(EagerBean.class);
             }
         }
     }

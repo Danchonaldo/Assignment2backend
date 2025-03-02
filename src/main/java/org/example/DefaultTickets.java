@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 public class DefaultTickets implements TicketService {
     private final TicketRepository repository;
 
-
     @Autowired
     public DefaultTickets(TicketRepository repository){
         this.repository = repository;
